@@ -1,84 +1,93 @@
-import { Image, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native'
-import React, { useContext } from 'react'
-import { useNavigation } from '@react-navigation/native'
-import ScreenNames from '../routes/screenNames'
-import { Images } from '../images/images'
-import AppCoatext from '../../store/appconttext'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-const Product = (props) => {
-    const navigation = useNavigation()
-     
-    const onClick = () => {
-        navigation.navigate(ScreenNames.descrption, {...props})
-    }
+const Product = ({ name, size, color, price, image, id }) => {
+  const navigation = useNavigation();
 
-    return (
-        <Pressable style={styles.card} onPress={onClick}>
-            <ImageBackground source={Images.realMadread2()} style={styles.bgImg}>
-            <View style={styles.desc}>
-               <Text style={styles.text}>{"Name:  " + props.name}</Text>
-               <Text style={styles.text}>{"size: "  + props.size}</Text>
-               <Text style={styles.text}>{ "color: " + props.color}</Text>
-               <Text style={styles.text}>{"price:" + props.price}</Text>
-            </View>
-            <View style={styles.Imagesview}>
-                <Image style={styles.img}  source={props.image}/>
-            </View>
-            </ImageBackground>
-        </Pressable>
-    )
-}        
+  const handlePress = () => {
+    navigation.navigate('descrption', { name, size, color, price, image, id }); // Navigate to the product details page
+  };
 
-export default Product
+  return (
+    <TouchableOpacity style={styles.cardContainer} onPress={handlePress}>
+      <Image style={styles.image} source={{ uri: image }} />
+      <View style={styles.infoContainer}>
+        <Text style={styles.nameText}>{name}</Text>
+        <View style={styles.detailsContainer}>
+          <Text style={styles.detailText}>Size: {size}</Text>
+          <Text style={styles.detailText}>Color: {color}</Text>
+        </View>
+        <Text style={styles.priceText}>${price.toFixed(2)}</Text>
+        <View style={styles.buttonContainer}>
+          <Text style={styles.buttonText}>View Details</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+export default Product;
 
 const styles = StyleSheet.create({
-    card: {
-        width: '90%',
-        height: 250,
-        backgroundColor: '#000',
-        marginTop: 40,
-        borderRadius: 40,
-        elevation:5,
-        flexDirection: 'row',
-        alignSelf: 'center',
-        borderRadius:20,
-        alignItems:'center',
-        justifyContent:'center',
-        borderWidth:10
-    },
-    desc: {
-        width: '50%',
-        height: '100%',
-        justifyContent: 'center',
-        paddingLeft: 10,
-        borderWidth: 1,
-    },
-    Imagesview: {
-        width: '50%',
-        height: '100%',
-        borderWidth:1,
-        // backgroundColor:'#fff'
-    },
-    text:{
-        fontSize:25,
-        color:'green'
-
-    },
-    img: {
-        width: 100,
-        height:100,
-        alignSelf: 'center',
-         margin:70, 
-        resizeMode:'contain', 
-        //  backgroundColor:'red'
-        backgroundColor:'rgba(255, 255, 255, 0.2)' 
-    },
-    bgImg:{
-        height:"98%",
-        width:'98%',
-        flexDirection:'row',
-        borderRadius:20,
-        alignSelf:'center'
-    }
-        
-    })
+  cardContainer: {
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    elevation: 6,
+    marginBottom: 20,
+    width: '100%',
+    padding: 15,
+    alignItems: 'center',
+  },
+  image: {
+    width: '100%',
+    height: 180,
+    borderRadius: 12,
+    marginBottom: 10,
+    backgroundColor: '#e0e0e0',
+  },
+  infoContainer: {
+    width: '100%',
+    paddingHorizontal: 10,
+  },
+  nameText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 5,
+  },
+  detailsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  detailText: {
+    fontSize: 14,
+    color: '#666',
+  },
+  priceText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  buttonContainer: {
+    marginTop: 10,
+    backgroundColor: '#007BFF',
+    borderRadius: 25,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+});

@@ -39,7 +39,7 @@ const Descrption = (props) => {
     return (
         <View>
             <View style={styles.Imagesview}>
-                <Image style={styles.img} source={image} />
+                <Image style={styles.img} source={{uri:image}} />
             </View>
             <View style={styles.quntityView}>
                 <Pressable onPress={() => setqty(qty + 1)}>
@@ -55,12 +55,12 @@ const Descrption = (props) => {
                 <Text style={styles.pname}>{name}</Text>
             {/* </View> */}
             <View style={styles.infoView}>
-                {renderSizes()} 
+                <Text style={styles.text}>size : {size}</Text>
+                {/* {renderSizes()}  */}
             </View>
             <View style={styles.infoView}>
-                {/* <Text style={styles.text}>   color          : </Text>
-                <Text style={styles.text}>{color}</Text> */}
-                {rendercolor()}
+                <Text style={styles.text}>   color          : </Text>
+                <Text style={styles.text}>{color}</Text>
             </View>
             <View style={styles.infoView}>
                 <Text style={styles.text}>   price          : </Text>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     img: {
         width: '100%',
         height: 250,
-
+        resizeMode:'contain',
     },
     text: {
         fontSize: 30,

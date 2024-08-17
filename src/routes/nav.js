@@ -9,6 +9,7 @@ import Splash from '../screens/Splash'
 import Descrption from '../screens/descrption'
 import Cart from '../screens/cart'
 import State from '../screens/State'
+import Accunt from '../screens/accunt'
 
 const MainNavigation = () => {
     const Stack = createNativeStackNavigator()
@@ -20,6 +21,7 @@ const MainNavigation = () => {
         <Stack.Screen name={ScreenNames.home} component={Home} />
         <Stack.Screen name={ScreenNames.descrption} component={Descrption} />
         <Stack.Screen name={ScreenNames.cart} component={Cart} />
+        <Stack.Screen name={ScreenNames.Accunt} component={Accunt} />
       </Stack.Navigator>
    </NavigationContainer>
       

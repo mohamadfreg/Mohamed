@@ -1,62 +1,66 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image } from 'react-native';
+import React from 'react';
 
-const Card = ( props) => {
+const Card = (props) => {
   return (
-    <View style={styles.IDview}>
-        <View style={styles.item}>
-          <View style={styles.img}>
-
-          </View>
-          <View style={styles.info}>
-            <Text style={styles.txt}>{'name : ' + props.name}</Text>
-            <Text style={styles.txt}>B.D:2009.7.8</Text>
-
-          </View>
-        </View>
-        <Text style={styles.txt}>my first ui</Text>
+    <View style={styles.cardContainer}>
+      <View style={styles.imageContainer}>
+        {/* Assuming props.image is a URL */}
+        <Image style={styles.image} source={{ uri: props.image }} />
       </View>
-  )
-}
+      <View style={styles.infoContainer}>
+        <Text style={styles.nameText}>{props.name}</Text>
+        <Text style={styles.dateText}>B.D: 2009.7.8</Text>
+      </View>
+      <Text style={styles.descriptionText}>My first UI</Text>
+    </View>
+  );
+};
 
-export default Card
+export default Card;
 
 const styles = StyleSheet.create({
-   
-  IDview: {
-    borderWidth: 1,
+  cardContainer: {
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 4,
+    margin: 12,
+    padding: 16,
     width: '90%',
-    height: '30%',
-    alignItems: 'center', 
-
-    margin:10
-  }, 
-  item: {
-   borderWidth: 1,
-    width: '90%',
-    height: '40%',
-    marginTop: 30,
-    flexDirection: 'row',
-    alignItems: 'center'
+    alignSelf: 'center',
   },
-  img: {
-    borderWidth: 1,
-    width: 100,
-    height: 100,
-    backgroundColor: 'blue',
-    borderRadius: 30
-
+  imageContainer: {
+    width: '100%',
+    height: 140,
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 12,
+    backgroundColor: '#f0f0f0',
   },
-  info: {
-    borderWidth:2,
-    width: 200,
-    height: 100,
-    marginLeft: 20,
-    justifyContent: 'center'
-
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 12,
   },
-  txt:{
-    fontSize:29,
-    marginTop:20,
-
-  }})
+  infoContainer: {
+    marginBottom: 12,
+  },
+  nameText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#333',
+  },
+  dateText: {
+    fontSize: 14,
+    color: '#666',
+  },
+  descriptionText: {
+    fontSize: 16,
+    color: '#444',
+    textAlign: 'center',
+  },
+});

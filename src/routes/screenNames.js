@@ -2,7 +2,8 @@ const ScreenNames = {
   home: 'Home',
   splash : 'Splash',
   descrption : 'descrption',
-  cart:'cart'
+  cart:'cart',
+  Accunt:'Accunt',
 };
 
 export default ScreenNames;
